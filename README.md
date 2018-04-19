@@ -103,14 +103,21 @@ class gensim.models.word2vec.Word2Vec(
 ...y más en la [API Reference de gensim](https://radimrehurek.com/gensim/models/word2vec.html#gensim.models.word2vec.Word2Vec)
 Modelos word2vec de gensim se guardan como matrices NumPy de floats de tamaño `len(w2v_model.wv.vocab)`\*`model.size`
 
-### Online training
-
-
-
 
 ## 3. Persistencia
+```python
+model.save('./mi-modelo')
+del model
+model = gensim.models.Word2Vec.load('./mi-modelo')
+```
 
-
+### Online training
+```python
+model = gensim.models.Word2Vec.load('./mi-modelo')
+more_sentences = [['Advanced', 'users', 'can', 'load', 'a', 'model', 'and', 'continue', 'training', 'it', 'with', 'more', 'sentences']]
+model.build_vocab(more_sentences, update=True) # importante update=True
+model.train(more_sentences, total_examples=model.corpus_count, epochs=model.iter)
+```
 
 ## 4. Experimentos
 ### Interfaz de similaridad
