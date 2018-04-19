@@ -29,7 +29,7 @@ logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=lo
 ### Alt 1. Forma básica
 Cargar todo en memoria
 ```python
-sentences = [['arroz', 'con', 'pollo'], ['pastel', ,'de', 'papas']]
+sentences = [['arroz', 'con', 'pollo'], ['pastel', 'de', 'papas']]
 model = gensim.models.Word2Vec(sentences)
 ```
 
@@ -38,6 +38,7 @@ Le pasamos un iterador memory-friendly..
 ```python
 import os
 from smart_open import smart_open
+
 class MySentences(object):
     def __init__(self, dirname):
         self.dirname = dirname
@@ -52,20 +53,69 @@ Si `os.listdir('./data/') = ['f1.txt', 'f2.txt', ..., 'fn.txt']` ..
 sentences = MySentences('./data/')
 model = gensim.models.Word2Vec(sentences)
 ```
-
+Todo el pre-procesamiento (lowercase, remover números, ...) conviene hacerla en la definición `MySentences`. *Todo lo que se necesita es que el input "yields" una frase (lista de palabras utf8) una tras otra.*
 ### Alt 3. Usando gensim-data
 Podemos usar corpus y/o modelos preentrenados de [gensim-data](https://github.com/RaRe-Technologies/gensim-data)
 ```python
+import gensim.downloader as api
 ```
+#### Cargando corpus
+```python
+corpus = api.load('text8')  # descarga de corpus y devuelto como un iterable
+model = gensim.models.Word2Vec(corpus)  # train a model from the corpus
+```
+#### Cargando modelo
+```python
+model = api.load('word2vec-google-news-300') # listo para usar
+```
+Estas descargas (de modelo o corpus) van a una carpeta temporal.
+Para descargar permanentemente y devolver el path, cambiamos el valor por defecto del argumento `return_path`:
+```python
+print(api.load("20-newsgroups", return_path=True))
+```
+
+
 
 
 ## Entrenamiento
 Podemos hacer los pasos explícitos
 ```python
-model = gensim.models.Word2Vec(min_count=1)  # modelo vacío
+model = gensim.models.Word2Vec()  # modelo vacío
 model.build_vocab(sentences)                 # puede ser un iterable
-model.train(sentences, total_examples=model.corpus_count, epochs=new_model.iter) 
+model.train(sentences, total_examples=model.corpus_count, epochs=model.iter) 
 ```
+### (Algunos) Parámetros del entrenamiento
+```python
+class gensim.models.word2vec.Word2Vec(
+    sentences=None, 
+    size=100, 
+    alpha=0.025, 
+    window=5, 
+    min_count=5, 
+    max_vocab_size=None, 
+    sample=0.001, 
+    seed=1, 
+    workers=3, 
+    min_alpha=0.0001, 
+    sg=0, 
+    hs=0, 
+    negative=5, 
+    cbow_mean=1, 
+    hashfxn=<built-in function hash>, 
+    iter=5, 
+    null_word=0, 
+    trim_rule=None, 
+    sorted_vocab=1,
+    batch_words=10000, 
+    compute_loss=False, 
+    callbacks=())
+```
+`
+...y más en la [API Reference de gensim](https://radimrehurek.com/gensim/models/word2vec.html#gensim.models.word2vec.Word2Vec)
+
+### Online training
+
+
 
 
 ## Persistencia
