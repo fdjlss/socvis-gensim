@@ -6,7 +6,7 @@
 4. [Experimentos](#experimentos)
 5. [Enlaces relevantes](#enlaces-relevantes)
 
-## Instalación
+## 0. Instalación
 ### Requerimientos
 Python 2.x (x >= 6), 3.x (x >= 3) <br>
 NumPy >= 1.3 <br>
@@ -21,7 +21,7 @@ pip install --upgrade gensim
 ```
 Más info: [Installation](https://radimrehurek.com/gensim/install.html)
 
-## Preparación de datos
+## 1. Preparación de datos
 ```python
 import gensim, logging
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
@@ -77,7 +77,7 @@ print(api.load("20-newsgroups", return_path=True))
 
 
 
-## Entrenamiento
+## 2. Entrenamiento
 Podemos hacer los pasos explícitos
 ```python
 model = gensim.models.Word2Vec()  # modelo vacío
@@ -101,17 +101,18 @@ class gensim.models.word2vec.Word2Vec(
     callbacks=())       # callback para ejecutar en etapas específicas del entrenamiento
 ```
 ...y más en la [API Reference de gensim](https://radimrehurek.com/gensim/models/word2vec.html#gensim.models.word2vec.Word2Vec)
+Modelos word2vec de gensim se guardan como matrices NumPy de floats de tamaño `len(w2v_model.wv.vocab)`\*`model.size`
 
 ### Online training
 
 
 
 
-## Persistencia
+## 3. Persistencia
 
 
 
-## Experimentos
+## 4. Experimentos
 ### Interfaz de similaridad
 
 ### WMD
@@ -121,7 +122,7 @@ class gensim.models.word2vec.Word2Vec(
 
 
 
-## Enlaces relevantes
+## 5. Enlaces relevantes
 * [Sitio oficial gensim](https://radimrehurek.com/gensim/index.html)
 * [C̶o̶r̶p̶i̶i̶ C̶o̶r̶p̶u̶s̶e̶s̶  Corpus (plural) y modelos preentrenados para uso en gensim con gloVe o w2v](https://github.com/RaRe-Technologies/gensim-data)
 * [El tutorial de w2v más simple del mundo](https://rare-technologies.com/word2vec-tutorial/)
