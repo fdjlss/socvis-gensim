@@ -88,29 +88,18 @@ model.train(sentences, total_examples=model.corpus_count, epochs=model.iter)
 ```python
 class gensim.models.word2vec.Word2Vec(
     sentences=None, 
-    size=100, 
-    alpha=0.025, 
-    window=5, 
-    min_count=5, 
-    max_vocab_size=None, 
-    sample=0.001, 
-    seed=1, 
-    workers=3, 
-    min_alpha=0.0001, 
-    sg=0, 
-    hs=0, 
-    negative=5, 
-    cbow_mean=1, 
-    hashfxn=<built-in function hash>, 
-    iter=5, 
-    null_word=0, 
-    trim_rule=None, 
-    sorted_vocab=1,
-    batch_words=10000, 
-    compute_loss=False, 
-    callbacks=())
+    size=100,           # n-dims de los vectores
+    alpha=0.025,        # learning rate inicial
+    window=5,           # distancia máxima entre palabra y su contexto
+    min_count=5,        # se descartan palabras con frecuencia total < min_count
+    max_vocab_size=None,# si hay más palabras, saca las con menor frecuencia
+    sg=0,               # 0: CBoW, 1: Skip-gram
+    hs=0,               # 0: HSMax, 1: NS
+    negative=5,         # limita "palabras ruidosas" tener para el NS (sólo si > 0)
+    cbow_mean=1,        # 0: suma el contexto, 1: promedio (sólo si sg=0)
+    iter=5,             # iter+1 épocas de entrenamiento (la primera para construir vocabulario)
+    callbacks=())       # callback para ejecutar en etapas específicas del entrenamiento
 ```
-`
 ...y más en la [API Reference de gensim](https://radimrehurek.com/gensim/models/word2vec.html#gensim.models.word2vec.Word2Vec)
 
 ### Online training
