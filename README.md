@@ -32,8 +32,9 @@ Cargar todo en memoria
 sentences = [['arroz', 'con', 'pollo'], ['pastel', ,'de', 'papas']]
 model = gensim.models.Word2Vec(sentences)
 ```
-### Alt 2. ¿Y si hay más datos?
-Le pasamos un iterable..
+
+### Alt 2. ¿Y si tengo (muchos) más datos?
+Le pasamos un iterador memory-friendly..
 ```python
 import os
 from smart_open import smart_open
@@ -48,12 +49,38 @@ class MySentences(object):
 ```
 Si `os.listdir('./data/') = ['f1.txt', 'f2.txt', ..., 'fn.txt']` ..
 ```python
-sentences = MySentences('./data/') # iterador memory-friendly
+sentences = MySentences('./data/')
 model = gensim.models.Word2Vec(sentences)
 ```
+
+### Alt 3. Usando gensim-data
+Podemos usar corpus y/o modelos preentrenados de [gensim-data](https://github.com/RaRe-Technologies/gensim-data)
+```python
+```
+
+
 ## Entrenamiento
+Podemos hacer los pasos explícitos
+```python
+model = gensim.models.Word2Vec(min_count=1)  # modelo vacío
+model.build_vocab(sentences)                 # puede ser un iterable
+model.train(sentences, total_examples=model.corpus_count, epochs=new_model.iter) 
+```
+
+
 ## Persistencia
+
+
+
 ## Experimentos
+### Interfaz de similaridad
+
+### WMD
+
+### Visualizando los embeddings
+
+
+
 
 ## Enlaces relevantes
 * [Sitio oficial gensim](https://radimrehurek.com/gensim/index.html)
