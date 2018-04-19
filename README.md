@@ -121,7 +121,9 @@ model.train(more_sentences, total_examples=model.corpus_count, epochs=model.iter
 
 ## 4. Experimentos
 ### Interfaz de similaridad
-
+```python
+model.most_similar(positive=['king', 'woman'], negative=['man'], topn=1)
+```
 ### WMD
 
 ### Visualizando los embeddings
