@@ -123,7 +123,7 @@ model.train(more_sentences, total_examples=model.corpus_count, epochs=model.iter
 ## 4. Experimentos
 Podemos obtener el embedding de una palabra con..
 ```python
->> model['anime']
+>> model['raccoon']
 array([ 1.0514954 , -1.0882462 ,  0.5977194 , -1.8239858 , -1.1860061 ,
         0.33046788, -1.0863892 , -2.48743   ,  1.2902331 , -1.0205759 ,
        -1.9141145 ,  1.3184149 ,  0.17544365, -1.5896797 ,  0.19770409,
