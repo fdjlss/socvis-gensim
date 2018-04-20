@@ -145,6 +145,11 @@ array([ 1.0514954 , -1.0882462 ,  0.5977194 , -1.8239858 , -1.1860061 ,
         0.18820573, -0.45227936,  0.09359731,  0.9148596 ,  0.50943875],
       dtype=float32)
 ```
+Cálculo de la log-probabilidad de una frase (por ahora sólo implementado con hs=1 y sg=1):
+```python
+>> model.score(["video game".split()])
+array([-10.407113], dtype=float32)
+```
 
 ### Interfaz de similaridad
 Algunos ejemplos:
@@ -163,7 +168,7 @@ Algunos ejemplos:
 >> model.similarity("dog", "tank")
 0.15581708106840225
 ```
-### WMD
+#### WMD
 ```python
 from nltk.corpus import stopwords
 from nltk import download
