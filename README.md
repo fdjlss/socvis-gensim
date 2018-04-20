@@ -159,8 +159,7 @@ Algunos ejemplos:
 ```python
 >> model.similarity("dog", "cat")
 0.8375475584168148
-```
-```python
+
 >> model.similarity("dog", "tank")
 0.15581708106840225
 ```
@@ -177,6 +176,16 @@ sentence_obama = [w for w in sentence_obama if w not in stop_words]
 sentence_president = 'The president greets the press in Chicago'
 sentence_president = sentence_president.lower().split()
 sentence_president = [w for w in sentence_president if w not in stop_words]
+sentence_orange = 'Oranges are my favorite fruit'
+sentence_orange = sentence_orange.lower().split()
+sentence_orange = [w for w in sentence_orange if w not in stop_words]
+```
+```python
+>> model.wmdistance(sentence_obama, sentence_president)
+15.759484129837737
+
+>> distance = model.wmdistance(sentence_president, sentence_orange)
+18.010847247734976
 ```
 ### Visualizando los embeddings
 
