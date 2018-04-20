@@ -120,7 +120,7 @@ model.train(more_sentences, total_examples=model.corpus_count, epochs=model.iter
 ```
 
 ## 4. Experimentos
-Embedding de una palabra
+Podemos obtener el embedding de una palabra con..
 ```python
 >> model['anime']
 array([ 1.0514954 , -1.0882462 ,  0.5977194 , -1.8239858 , -1.1860061 ,
@@ -147,6 +147,7 @@ array([ 1.0514954 , -1.0882462 ,  0.5977194 , -1.8239858 , -1.1860061 ,
 ```
 
 ### Interfaz de similaridad
+Algunos ejemplos:
 ```python
 >> model.most_similar(positive=['king', 'woman'], negative=['man'], topn=5)
 [('queen', 0.6664211750030518), ('prince', 0.6179214715957642), ('empress', 0.5975099802017212), ('throne', 0.596900463104248), ('princess', 0.5834260582923889)]
@@ -164,7 +165,19 @@ array([ 1.0514954 , -1.0882462 ,  0.5977194 , -1.8239858 , -1.1860061 ,
 0.15581708106840225
 ```
 ### WMD
+```python
+from nltk.corpus import stopwords
+from nltk import download
+download('stopwords')
+stop_words = stopwords.words('english')
 
+sentence_obama = 'Obama speaks to the media in Illinois'
+sentence_obama = sentence_obama.lower().split()
+sentence_obama = [w for w in sentence_obama if w not in stop_words]
+sentence_president = 'The president greets the press in Chicago'
+sentence_president = sentence_president.lower().split()
+sentence_president = [w for w in sentence_president if w not in stop_words]
+```
 ### Visualizando los embeddings
 
 
