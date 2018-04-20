@@ -80,8 +80,8 @@ print(api.load("20-newsgroups", return_path=True))
 ## 2. Entrenamiento
 Podemos hacer los explícitos los pasos en la creación del modelo
 ```python
-model = gensim.models.Word2Vec()  # modelo vacío
-model.build_vocab(sentences)                 # puede ser un iterable
+model = gensim.models.Word2Vec()    # modelo vacío
+model.build_vocab(sentences)        # puede ser un iterable
 model.train(sentences, total_examples=model.corpus_count, epochs=model.iter) 
 ```
 ### (Algunos) Parámetros del entrenamiento
