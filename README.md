@@ -204,7 +204,7 @@ Como WMD es prácticamente distancia euclidiana, convendría precalcular previam
 
 ## 5. Enlaces relevantes
 * [Sitio oficial gensim](https://radimrehurek.com/gensim/index.html)
-* [C̶o̶r̶p̶i̶i̶ C̶o̶r̶p̶u̶s̶e̶s̶  Corpus (plural) y modelos preentrenados para uso en gensim con gloVe o w2v](https://github.com/RaRe-Technologies/gensim-data)
+* [Corpus y modelos preentrenados para uso en gensim con gloVe o w2v](https://github.com/RaRe-Technologies/gensim-data)
 * [El tutorial de w2v más simple del mundo](https://rare-technologies.com/word2vec-tutorial/)
 * [Notebooks con temas específicos](https://github.com/RaRe-Technologies/gensim/tree/develop/docs/notebooks)
 * [Word2Vec tutorial con TensorFlow y Keras](http://adventuresinmachinelearning.com/gensim-word2vec-tutorial/)
