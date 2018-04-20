@@ -182,11 +182,16 @@ sentence_orange = [w for w in sentence_orange if w not in stop_words]
 ```
 ```python
 >> model.wmdistance(sentence_obama, sentence_president)
-15.759484129837737
+2.596937661854488
 
->> distance = model.wmdistance(sentence_president, sentence_orange)
-18.010847247734976
+>> model.wmdistance(sentence_obama, sentence_orange)
+3.238054760814676
+
+>> model.wmdistance(sentence_president, sentence_orange)
+3.6691700002904417
 ```
+Como WMD es prácticamente distancia euclidiana, convendría precalcular previamente las L2-normalizaciones de los vectores con ```model.init_sims()``` (para quedarse sólo con las normalizaciones ```init_sims(replace=True)``` antes de computar las wmd-distancias. Para eliminar todos los vectores normalizados: ```model.clear_sims()```
+
 ### Visualizando los embeddings
 
 
