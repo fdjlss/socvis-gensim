@@ -122,9 +122,7 @@ model.train(more_sentences, total_examples=model.corpus_count, epochs=model.iter
 ## 4. Experimentos
 Embedding de una palabra
 ```python
-model['anime']
-```
-```
+>> model['anime']
 array([ 1.0514954 , -1.0882462 ,  0.5977194 , -1.8239858 , -1.1860061 ,
         0.33046788, -1.0863892 , -2.48743   ,  1.2902331 , -1.0205759 ,
        -1.9141145 ,  1.3184149 ,  0.17544365, -1.5896797 ,  0.19770409,
@@ -150,27 +148,19 @@ array([ 1.0514954 , -1.0882462 ,  0.5977194 , -1.8239858 , -1.1860061 ,
 
 ### Interfaz de similaridad
 ```python
-model.most_similar(positive=['king', 'woman'], negative=['man'], topn=5)
-```
-```
+>> model.most_similar(positive=['king', 'woman'], negative=['man'], topn=5)
 [('queen', 0.6664211750030518), ('prince', 0.6179214715957642), ('empress', 0.5975099802017212), ('throne', 0.596900463104248), ('princess', 0.5834260582923889)]
 ```
 ```python
-model.wv.doesnt_match("dog horse cat mouse human".split())
-```
-```
+>> model.wv.doesnt_match("dog horse cat mouse human".split())
 'human'
 ```
 ```python
-model.similarity("dog", "cat")
-```
-```
+>> model.similarity("dog", "cat")
 0.8375475584168148
 ```
 ```python
-model.similarity("dog", "tank")
-```
-```
+>> model.similarity("dog", "tank")
 0.15581708106840225
 ```
 ### WMD
