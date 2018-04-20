@@ -198,9 +198,27 @@ sentence_orange = [w for w in sentence_orange if w not in stop_words]
 Como WMD es prácticamente distancia euclidiana, convendría precalcular previamente las L2-normalizaciones de los vectores con ```model.init_sims()``` (para quedarse sólo con las normalizaciones ```init_sims(replace=True)``` antes de computar las wmd-distancias. Para eliminar todos los vectores normalizados: ```model.clear_sims()```
 
 ### Visualizando los embeddings
+#### Proyección PCA
+```python
+from sklearn.decomposition import PCA
+import matplotlib
+matplotlib.use("Agg")
+from matplotlib import pyplot
 
+some_words = ["dog",  "animal", "cat",  "mice", "vegetables", "king", "queen", "man", "woman"]
 
+X = model[model.wv.vocab] # convertimos palabras del vocabulario
+pca = PCA(n_components=2) # proyección bidimensional
+result = pca.fit(X)
 
+some_X = model[some_words]
+some_transforms = pca.transform(some_X)
+pyplot.scatter(some_transforms[:, 0], some_transforms[:, 1]) # scatter plot
+# Etiquetamos puntos con las palabras correspondientes
+for i, word in enumerate(some_words):
+    pyplot.annotate(word, xy=(some_transforms[i, 0], some_transforms[i, 1]))
+pyplot.savefig("PCA-w2v-3.png")
+```
 
 ## 5. Enlaces relevantes
 * [Sitio oficial gensim](https://radimrehurek.com/gensim/index.html)
