@@ -112,6 +112,7 @@ model = gensim.models.Word2Vec.load('./mi-modelo')
 ```
 
 ### Online training
+Podemos parcialmente entrenar modelo con algunos documentos, guardarlo, y continuar luego el entrenamiento con más documentos con palabras posiblemente nuevas para el vocabulario:
 ```python
 model = gensim.models.Word2Vec.load('./mi-modelo')
 more_sentences = [['Advanced', 'users', 'can', 'load', 'a', 'model', 'and', 'continue', 'training', 'it', 'with', 'more', 'sentences']]
