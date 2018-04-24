@@ -3,8 +3,9 @@
 1. [Preparación de datos](#preparación-de-datos)
 2. [Entrenamiento](#entrenamiento)
 3. [Persistencia](#persistencia)
-4. [Experimentos](#experimentos)
-5. [Enlaces relevantes](#enlaces-relevantes)
+4. [Evaluación](#evaluación)
+5. [Experimentos](#experimentos)
+6. [Enlaces relevantes](#enlaces-relevantes)
 
 ## 0. Instalación
 ### Requerimientos
@@ -120,7 +121,25 @@ model.build_vocab(more_sentences, update=True) # importante update=True
 model.train(more_sentences, total_examples=model.corpus_count, epochs=model.iter)
 ```
 
-## 4. Experimentos
+## 4. Evaluación
+Gensim incluye algunos datasets contra los que hacer evaluaciones del modelo.
+En `questions-words.txt`, dataset de Google, se encuentran analogías sintácticas y semánticas del tipo a:a'::b:b'. Con `accuracy()` hacemos que el modelo responda a:a'::b:__ y se obtienen puntajes de aciertos.
+```python
+import os
+import gensim
+from pprint import pprint
+
+test_data_dir = '{}'.format(os.sep).join([gensim.__path__[0], 'test', 'test_data']) + os.sep
+model.accuracy(test_data_dir + 'questions-words.txt', case_sensitive=False)
+```
+Con `evaluate_word_pairs()` se evalúan las correlaciones que hace el modelo contra juicios de similitud humana con el coeficiente de correlación de Pearson y el coeficiente de correlación de Spearman, como realizado en el [primer paper de Mikolov et al. del 2013](https://arxiv.org/abs/1301.3781)
+```python
+model.evaluate_word_pairs(test_data_dir + 'wordsim353.tsv', case_sensitive=False)
+```
+Nota (de [este notebook](https://github.com/RaRe-Technologies/gensim/blob/develop/docs/notebooks/word2vec.ipynb) ): 
+*Once again, good performance on Google's or WS-353 test set doesn’t mean word2vec will work well in your application, or vice versa. It’s always best to evaluate directly on your intended task. For an example of how to use word2vec in a classifier pipeline, see this [tutorial](https://github.com/RaRe-Technologies/movie-plots-by-genre).*
+
+## 5. Experimentos
 Podemos obtener el embedding de una palabra con..
 ```python
 >> model['raccoon']
@@ -231,7 +250,7 @@ for i, word in enumerate(some_words):
 pyplot.savefig("PCA-w2v-3.png")
 ```
 
-## 5. Enlaces relevantes
+## 6. Enlaces relevantes
 * [Sitio oficial gensim](https://radimrehurek.com/gensim/index.html)
 * [Corpus y modelos preentrenados para uso en gensim con gloVe o w2v](https://github.com/RaRe-Technologies/gensim-data)
 * [El tutorial de w2v más simple del mundo](https://rare-technologies.com/word2vec-tutorial/)
