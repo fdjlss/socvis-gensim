@@ -163,7 +163,7 @@ Obtenemos similares resultados si hacemos directamente la aritmética:
 ```python
 >> king, man, woman = model['king'], model['man'], model['woman']
 >> result = king - man + woman
->> model.most_similar(positive=[result], topn=1)
+>> model.most_similar(positive=[result], topn=6)
 [('king', 0.861211359500885), ('queen', 0.7236999273300171), ('prince', 0.6600159406661987), ('princess', 0.6493911743164062), ('empress', 0.6436548233032227), ('elizabeth', 0.6303344964981079)]
 ```
 La diferencia es que `most_similar()` primero precalcula la L2-normalización de los vectores, hace la suma con los vectores normalizados, luego revisa los `topn` vecinos cercanos del vector resultante y remueve el input del output. Todos estos cálculos de distancia se hacen con similaridad coseno.
