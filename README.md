@@ -123,7 +123,7 @@ model.train(more_sentences, total_examples=model.corpus_count, epochs=model.iter
 
 ## Evaluación
 Gensim incluye algunos datasets contra los que hacer evaluaciones del modelo.
-En `questions-words.txt`, dataset de Google, se encuentran analogías sintácticas y semánticas de la forma a:A::b:B. Con `accuracy()` hacemos que el modelo responda a:A::b:__ y se obtienen puntajes de aciertos.
+En `questions-words.txt`, dataset de Google, se encuentran analogías sintácticas y semánticas de la forma a:a' :: b:b'. Con `accuracy()` hacemos que el modelo responda a:a' :: b:__ y se obtienen puntajes de aciertos.
 ```python
 import os
 import gensim
