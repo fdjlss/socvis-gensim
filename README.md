@@ -127,7 +127,6 @@ En `questions-words.txt`, dataset de Google, se encuentran analogías sintáctic
 ```python
 import os
 import gensim
-from pprint import pprint
 test_data_dir = '{}'.format(os.sep).join([gensim.__path__[0], 'test', 'test_data']) + os.sep
 ```
 ```python
@@ -145,14 +144,16 @@ test_data_dir = '{}'.format(os.sep).join([gensim.__path__[0], 'test', 'test_data
 2018-04-24 14:54:33,981 : INFO : gram9-plural-verbs: 29.2% (190/650)
 2018-04-24 14:54:33,982 : INFO : total: 37.1% (2635/7100)
 ```
-Con `evaluate_word_pairs()` se evalúan las correlaciones que hace el modelo contra juicios de similitud humana con el coeficiente de correlación de Pearson y el coeficiente de correlación de Spearman, como realizado en el [primer paper de Mikolov et al. del 2013](https://arxiv.org/abs/1301.3781)
+Con `evaluate_word_pairs()` se evalúan las correlaciones que hace el modelo contra juicios de similitud humana con el coeficiente de correlación de Pearson y el coeficiente de correlación de Spearman, como realizado en el [primero de los papers de Mikolov et al. del 2013](https://arxiv.org/abs/1301.3781)
 ```python
 >> model.evaluate_word_pairs(test_data_dir + 'wordsim353.tsv', case_insensitive=False)
 
-2018-04-24 14:57:27,210 : INFO : Pearson correlation coefficient against /home/jschellman/twitsrc/lib/python3.5/site-packages/gensim/test/test_data/wordsim353.tsv: 0.6565
-2018-04-24 14:57:27,211 : INFO : Spearman rank-order correlation coefficient against /home/jschellman/twitsrc/lib/python3.5/site-packages/gensim/test/test_data/wordsim353.tsv: 0.6651
-2018-04-24 14:57:27,211 : INFO : Pairs with unknown words ratio: 5.7%
-((0.6564798796510927, 1.986859872406572e-42), SpearmanrResult(correlation=0.6650673182540592, pvalue=6.992561183956873e-44), 5.6657223796034)
+2018-04-24 14:58:26,198 : INFO : Pearson correlation coefficient against /home/jschellman/twitsrc/lib/python3.5/site-packages/gensim/test/test_data/wordsim353.tsv: 0.6565
+2018-04-24 14:58:26,198 : INFO : Spearman rank-order correlation coefficient against /home/jschellman/twitsrc/lib/python3.5/site-packages/gensim/test/test_data/wordsim353.tsv: 0.6651
+2018-04-24 14:58:26,198 : INFO : Pairs with unknown words ratio: 5.7%
+((0.6564798796510927, 1.986859872406572e-42),
+ SpearmanrResult(correlation=0.6650673182540592, pvalue=6.992561183956873e-44),
+ 5.6657223796034)
 ```
 Nota (de [este notebook](https://github.com/RaRe-Technologies/gensim/blob/develop/docs/notebooks/word2vec.ipynb) ): 
 *Once again, good performance on Google's or WS-353 test set doesn’t mean word2vec will work well in your application, or vice versa. It’s always best to evaluate directly on your intended task. For an example of how to use word2vec in a classifier pipeline, see this [tutorial](https://github.com/RaRe-Technologies/movie-plots-by-genre).*
