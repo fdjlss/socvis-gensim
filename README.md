@@ -22,7 +22,7 @@ pip install --upgrade gensim
 ```
 Más info: [Installation](https://radimrehurek.com/gensim/install.html)
 
-## 1. Preparación de datos
+## Preparación de datos
 ```python
 import gensim, logging
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
