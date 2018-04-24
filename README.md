@@ -78,7 +78,7 @@ print(api.load("20-newsgroups", return_path=True))
 
 
 
-## 2. Entrenamiento
+## Entrenamiento
 Podemos hacer los explícitos los pasos en la creación del modelo
 ```python
 model = gensim.models.Word2Vec()    # modelo vacío
@@ -105,7 +105,7 @@ class gensim.models.word2vec.Word2Vec(
 Modelos word2vec de gensim se guardan como matrices NumPy de floats de tamaño `len(w2v_model.wv.vocab)`\*`model.size`
 
 
-## 3. Persistencia
+## Persistencia
 ```python
 model.save('./mi-modelo')
 del model
@@ -121,25 +121,43 @@ model.build_vocab(more_sentences, update=True) # importante update=True
 model.train(more_sentences, total_examples=model.corpus_count, epochs=model.iter)
 ```
 
-## 4. Evaluación
+## Evaluación
 Gensim incluye algunos datasets contra los que hacer evaluaciones del modelo.
 En `questions-words.txt`, dataset de Google, se encuentran analogías sintácticas y semánticas de la forma a:A::b:B. Con `accuracy()` hacemos que el modelo responda a:A::b:__ y se obtienen puntajes de aciertos.
 ```python
 import os
 import gensim
 from pprint import pprint
-
 test_data_dir = '{}'.format(os.sep).join([gensim.__path__[0], 'test', 'test_data']) + os.sep
-model.accuracy(test_data_dir + 'questions-words.txt', case_sensitive=False)
+```
+```python
+>> model.accuracy(test_data_dir + 'questions-words.txt', case_insensitive=False)
+
+2018-04-24 14:54:13,412 : INFO : precomputing L2-norms of word weight vectors
+2018-04-24 14:54:14,321 : INFO : family: 58.2% (178/306)
+2018-04-24 14:54:16,506 : INFO : gram1-adjective-to-adverb: 17.6% (133/756)
+2018-04-24 14:54:17,393 : INFO : gram2-opposite: 21.2% (65/306)
+2018-04-24 14:54:21,031 : INFO : gram3-comparative: 56.1% (707/1260)
+2018-04-24 14:54:22,494 : INFO : gram4-superlative: 35.2% (178/506)
+2018-04-24 14:54:25,358 : INFO : gram5-present-participle: 31.1% (309/992)
+2018-04-24 14:54:29,224 : INFO : gram7-past-tense: 31.9% (425/1332)
+2018-04-24 14:54:32,103 : INFO : gram8-plural: 45.4% (450/992)
+2018-04-24 14:54:33,981 : INFO : gram9-plural-verbs: 29.2% (190/650)
+2018-04-24 14:54:33,982 : INFO : total: 37.1% (2635/7100)
 ```
 Con `evaluate_word_pairs()` se evalúan las correlaciones que hace el modelo contra juicios de similitud humana con el coeficiente de correlación de Pearson y el coeficiente de correlación de Spearman, como realizado en el [primer paper de Mikolov et al. del 2013](https://arxiv.org/abs/1301.3781)
 ```python
-model.evaluate_word_pairs(test_data_dir + 'wordsim353.tsv', case_sensitive=False)
+>> model.evaluate_word_pairs(test_data_dir + 'wordsim353.tsv', case_insensitive=False)
+
+2018-04-24 14:57:27,210 : INFO : Pearson correlation coefficient against /home/jschellman/twitsrc/lib/python3.5/site-packages/gensim/test/test_data/wordsim353.tsv: 0.6565
+2018-04-24 14:57:27,211 : INFO : Spearman rank-order correlation coefficient against /home/jschellman/twitsrc/lib/python3.5/site-packages/gensim/test/test_data/wordsim353.tsv: 0.6651
+2018-04-24 14:57:27,211 : INFO : Pairs with unknown words ratio: 5.7%
+((0.6564798796510927, 1.986859872406572e-42), SpearmanrResult(correlation=0.6650673182540592, pvalue=6.992561183956873e-44), 5.6657223796034)
 ```
 Nota (de [este notebook](https://github.com/RaRe-Technologies/gensim/blob/develop/docs/notebooks/word2vec.ipynb) ): 
 *Once again, good performance on Google's or WS-353 test set doesn’t mean word2vec will work well in your application, or vice versa. It’s always best to evaluate directly on your intended task. For an example of how to use word2vec in a classifier pipeline, see this [tutorial](https://github.com/RaRe-Technologies/movie-plots-by-genre).*
 
-## 5. Experimentos
+## Experimentos
 Podemos obtener el embedding de una palabra con..
 ```python
 >> model['raccoon']
@@ -250,7 +268,7 @@ for i, word in enumerate(some_words):
 pyplot.savefig("PCA-w2v-3.png")
 ```
 
-## 6. Enlaces relevantes
+## Enlaces relevantes
 * [Sitio oficial gensim](https://radimrehurek.com/gensim/index.html)
 * [Corpus y modelos preentrenados para uso en gensim con gloVe o w2v](https://github.com/RaRe-Technologies/gensim-data)
 * [El tutorial de w2v más simple del mundo](https://rare-technologies.com/word2vec-tutorial/)
