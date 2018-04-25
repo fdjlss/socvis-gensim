@@ -271,7 +271,7 @@ pyplot.savefig("PCA-w2v-3.png")
 
 ## Enlaces relevantes
 * [Sitio oficial gensim](https://radimrehurek.com/gensim/index.html)
-* [Corpus y modelos preentrenados para uso en gensim con gloVe o w2v](https://github.com/RaRe-Technologies/gensim-data)
+* [Gensim-data: corpus y modelos preentrenados para uso en gensim con gloVe o w2v](https://github.com/RaRe-Technologies/gensim-data)
 * [El tutorial de w2v más simple del mundo](https://rare-technologies.com/word2vec-tutorial/)
 * [Notebooks con temas específicos](https://github.com/RaRe-Technologies/gensim/tree/develop/docs/notebooks)
 * [Word2Vec tutorial con TensorFlow y Keras](http://adventuresinmachinelearning.com/gensim-word2vec-tutorial/)
